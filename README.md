@@ -11,6 +11,6 @@ Attachment:
 - forecast_vs_actual.png- model accuracy visualization
 - future_forecast.png- next 6 months prediction
 - visual_app.py - full code for visual interface
-- Dashboard URL Access - https://futureml03-k2aplngccfnvv2xbinhfme.streamlit.app/
+- Dashboard URL Access - https://futureml01-rbpwwcwr8esmnioscab2ri.streamlit.app/
 
 Dataset: Store Sales Time Series Forecasting dataset from Kaggle
