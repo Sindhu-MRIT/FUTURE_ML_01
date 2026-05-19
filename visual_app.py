@@ -102,7 +102,7 @@ def load_data():
 
 @st.cache_data
 def load_family():
-    df = pd.read_csv('train.csv', nrows=500000)
+    df = pd.read_csv('train_small.csv', nrows=500000)
     df['date'] = pd.to_datetime(df['date'])
     f = df.groupby('family')['sales'].sum().reset_index()
     return f.sort_values('sales', ascending=True).tail(12)
