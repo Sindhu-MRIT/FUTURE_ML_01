@@ -90,7 +90,7 @@ div[data-testid="stSidebar"] hr { border-color: #2e2e2e; margin: 16px 0; }
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv('train.csv', nrows=500000)
+    df = pd.read_csv('train_small.csv', nrows=500000)
     df['date'] = pd.to_datetime(df['date'])
     df['Month'] = df['date'].dt.to_period('M')
     m = df.groupby('Month')['sales'].sum().reset_index()
