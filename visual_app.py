@@ -14,7 +14,7 @@ st.markdown("""
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap');
 
 html, body, [class*="css"] { font-family: 'DM Sans', sans-serif; }
-.stApp { background: #f8f6f1; }
+.stApp { background: #d8b4f2; }
 
 div[data-testid="stSidebar"] { background: #1a1a1a; }
 div[data-testid="stSidebar"] * { color: #999 !important; }
@@ -144,17 +144,17 @@ GRID = dict(gridcolor='#f0ece6', zeroline=False, showline=True, linecolor='#ece8
 with st.sidebar:
     st.markdown("""
     <div style='padding:4px 0 20px'>
-        <div style='font-family:Playfair Display,serif; font-size:18px; color:#f8f6f1'>Sales Forecast</div>
-        <div style='font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#444; margin-top:4px'>Ecuador Retail</div>
+        <div style='font-family:Playfair Display,serif; font-size:18px; color:'#aca6d2'>Sales Forecast</div>
+        <div style='font-size:10px; letter-spacing:2px; text-transform:uppercase;color:#7a9e7e;font-weight:700;margin-top:4px'>Ecuador Retail</div>
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("<div style='font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#444; margin-bottom:8px'>Forecast window</div>", unsafe_allow_html=True)
+    st.markdown("<div style='font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#7a9e7e;font-weight:700; margin-bottom:8px'>Forecast window</div>", unsafe_allow_html=True)
     n_months = st.slider("Months ahead", min_value=3, max_value=12, value=6, label_visibility="collapsed")
     st.markdown(f"<div style='font-size:24px; font-weight:600; color:#c8a46e; margin-top:4px'>{n_months} months</div>", unsafe_allow_html=True)
 
     st.markdown("---")
-    st.markdown("<div style='font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#444; margin-bottom:12px'>What each section shows</div>", unsafe_allow_html=True)
+    st.markdown("<div style='font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#7a9e7e;font-weight:700; margin-bottom:12px'>What each section shows</div>", unsafe_allow_html=True)
     sections = [
         ("4 key numbers", "Quick snapshot of where things stand"),
         ("Big chart", "All past sales plus the forecast line"),
@@ -166,13 +166,13 @@ with st.sidebar:
     for title, desc in sections:
         st.markdown(f"""
         <div style='border-left:2px solid #c8a46e; padding:6px 10px; margin-bottom:8px'>
-            <div style='font-size:12px; color:#f8f6f1; font-weight:500'>{title}</div>
-            <div style='font-size:11px; color:#555; margin-top:2px; line-height:1.5'>{desc}</div>
+            <div style='font-size:12px;color:#7a9e7e;font-weight:700'>{title}</div>
+            <div style='font-size:11px; color:#c8a46e; margin-top:2px; line-height:1.5'>{desc}</div>
         </div>""", unsafe_allow_html=True)
 
     st.markdown("---")
     st.markdown("""
-    <div style='font-size:11px; color:#555; line-height:2.2'>
+    <div style='font-size:11px; color:#7a9e7e;font-weight:700;line-height:2.2'>
         Country — Ecuador<br>
         Stores — Retail chain<br>
         Period — 2013 to 2017<br>
@@ -196,7 +196,7 @@ total_f = fut['forecast'].sum()
 
 
 st.markdown('<div class="headline">How are sales doing?</div>', unsafe_allow_html=True)
-st.markdown(f'<div class="subline">A complete picture of past performance and what to expect over the next {n_months} months — built on real retail data from Ecuador.</div>', unsafe_allow_html=True)
+st.markdown(f'<div class="subline"><span style="color:#7a9e7e;font-weight:700">A complete picture of past performance and what to expect over the next {n_months} months — built on real retail data from Ecuador.</span></div>', unsafe_allow_html=True)
 
 st.markdown("""
 <div class="hint-box">
@@ -219,15 +219,15 @@ for col, (color, label, num, desc) in zip([c1, c2, c3, c4], stat_data):
         st.markdown(f"""
         <div class="stat-card">
             <div class="stat-top" style="background:{color}"></div>
-            <div class="stat-label">{label}</div>
+            <div class="stat-label"><strong>{label}</strong></div>
             <div class="stat-num">{num}</div>
-            <div class="stat-desc">{desc}</div>
+            <div class="stat-desc"><span style="color:#7a9e7e">{desc}</span></div>
         </div>""", unsafe_allow_html=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
 
-st.markdown('<div class="section-label">The full picture</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-label"><strong>The full picture</strong></div>', unsafe_allow_html=True)
 st.markdown('<div class="section-title">Sales history and what comes next</div>', unsafe_allow_html=True)
 
 fig = go.Figure()
@@ -256,10 +256,10 @@ fig.add_trace(go.Scatter(
 fig.update_layout(
     **CHART,
     legend=dict(bgcolor='rgba(248,246,241,0.95)', bordercolor='#e8e2d8',
-                borderwidth=1, font=dict(color='#444', size=12),
+                borderwidth=1, font=dict(color='#7a0d10', size=12),
                 orientation='h', yanchor='bottom', y=1.02, xanchor='left', x=0),
-    xaxis=dict(**GRID, tickformat='%b %Y'),
-    yaxis=dict(**GRID, tickformat=',d'),
+    xaxis=dict(**GRID, tickformat='%b %Y', tickfont=dict(color='#7a9e7e')),
+    yaxis=dict(**GRID, tickformat=',d', tickfont=dict(color='#7a9e7e')),
     height=420
 )
 st.plotly_chart(fig, use_container_width=True)
@@ -270,9 +270,9 @@ st.markdown("<br>", unsafe_allow_html=True)
 left, right = st.columns([1.2, 0.8], gap="small")
 
 with left:
-    st.markdown('<div class="section-label">Accuracy check</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-label"><strong>Accuracy check</strong></div>', unsafe_allow_html=True)
     st.markdown('<div class="section-title">Did the model get it right?</div>', unsafe_allow_html=True)
-    st.markdown("<div style='font-size:13px; color:#aaa; margin-bottom:16px; font-weight:300'>The last 20% of data was hidden from the model during training. This shows how close its predictions were to what actually happened.</div>", unsafe_allow_html=True)
+    st.markdown("<div style='font-size:13px; color:#7a9e7e; margin-bottom:16px; font-weight:700'>The last 20% of data was hidden from the model during training. This shows how close its predictions were to what actually happened.</div>", unsafe_allow_html=True)
 
     fig2 = go.Figure()
     fig2.add_trace(go.Scatter(
@@ -290,16 +290,16 @@ with left:
         legend=dict(bgcolor='rgba(248,246,241,0.95)', bordercolor='#e8e2d8',
                     borderwidth=1, font=dict(color='#444', size=11),
                     orientation='h', yanchor='bottom', y=1.02, xanchor='left', x=0),
-        xaxis=dict(**GRID, tickformat='%b %Y'),
-        yaxis=dict(**GRID, tickformat=',d'),
+        xaxis=dict(**GRID, tickformat='%b %Y', tickfont=dict(color='#7a9e7e')),
+        yaxis=dict(**GRID, tickformat=',d', tickfont=dict(color='#7a9e7e')),
         height=340
     )
     st.plotly_chart(fig2, use_container_width=True)
 
 with right:
-    st.markdown('<div class="section-label">Month by month</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-label"><strong>Month by month</strong></div>', unsafe_allow_html=True)
     st.markdown('<div class="section-title">Exact forecast numbers</div>', unsafe_allow_html=True)
-    st.markdown("<div style='font-size:13px; color:#aaa; margin-bottom:16px; font-weight:300'>Low and high show the range where sales will most likely land each month.</div>", unsafe_allow_html=True)
+    st.markdown("<div style='font-size:13px; color:#7a9e7e; margin-bottom:16px; font-weight:700'>Low and high show the range where sales will most likely land each month.</div>", unsafe_allow_html=True)
 
     tbl = fut[['Month', 'forecast', 'lo', 'hi']].copy()
     tbl['Month'] = tbl['Month'].dt.strftime('%B %Y')
@@ -312,9 +312,9 @@ with right:
 st.markdown("<br>", unsafe_allow_html=True)
 
 
-st.markdown('<div class="section-label">Product breakdown</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-label"><strong>Product breakdown</strong></div>', unsafe_allow_html=True)
 st.markdown('<div class="section-title">What sells the most</div>', unsafe_allow_html=True)
-st.markdown("<div style='font-size:13px; color:#aaa; margin-bottom:16px; font-weight:300'>Total units sold per product category across the entire dataset. Longer bar means more volume.</div>", unsafe_allow_html=True)
+st.markdown("<div style='font-size:13px; color:#7a9e7e; margin-bottom:16px; font-weight:700'>Total units sold per product category across the entire dataset. Longer bar means more volume.</div>", unsafe_allow_html=True)
 
 colors = ['#e8e2d8'] * len(fam)
 colors[-1] = '#c8a46e'
@@ -329,8 +329,8 @@ fig3 = go.Figure(go.Bar(
 ))
 fig3.update_layout(
     **CHART,
-    xaxis=dict(**GRID, tickformat=',d'),
-    yaxis=dict(gridcolor='rgba(0,0,0,0)', zeroline=False),
+    xaxis=dict(**GRID, tickformat=',d', tickfont=dict(color='#7a9e7e')),
+    yaxis=dict(gridcolor='rgba(0,0,0,0)', zeroline=False, tickfont=dict(color='#7a9e7e')),
     height=380
 )
 st.plotly_chart(fig3, use_container_width=True)
@@ -338,7 +338,7 @@ st.plotly_chart(fig3, use_container_width=True)
 st.markdown("<br>", unsafe_allow_html=True)
 
 
-st.markdown('<div class="section-label">What to do with this</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-label"><strong>What to do with this</strong></div>', unsafe_allow_html=True)
 st.markdown('<div class="section-title">Action plan based on the forecast</div>', unsafe_allow_html=True)
 
 a1, a2, a3 = st.columns(3, gap="small")
@@ -346,7 +346,7 @@ a1, a2, a3 = st.columns(3, gap="small")
 with a1:
     st.markdown(f"""
     <div class="action-card">
-        <div class="ac-step">Action 01</div>
+        <div class="ac-step" style="color:#7a9e7e;">Action 01</div>
         <div class="ac-title">Order stock early</div>
         <div class="ac-body">
             Peak demand hits in <span class="ac-hi">{peak['Month'].strftime('%B %Y')}</span>
@@ -358,7 +358,7 @@ with a1:
 with a2:
     st.markdown(f"""
     <div class="action-card">
-        <div class="ac-step">Action 02</div>
+        <div class="ac-step" style="color:#7a9e7e;">Action 02</div>
         <div class="ac-title">Run a promotion in the slow month</div>
         <div class="ac-body">
             Sales dip in <span class="ac-hi">{slow['Month'].strftime('%B %Y')}</span>
@@ -370,7 +370,7 @@ with a2:
 with a3:
     st.markdown(f"""
     <div class="action-card">
-        <div class="ac-step">Action 03</div>
+        <div class="ac-step" style="color:#7a9e7e;">Action 03</div>
         <div class="ac-title">Plan your budget now</div>
         <div class="ac-body">
             Monthly average over the next <span class="ac-hi">{n_months} months</span>
@@ -380,9 +380,9 @@ with a3:
     </div>""", unsafe_allow_html=True)
 
 st.markdown("""
-<div style='text-align:center; color:#ccc; font-size:11px; letter-spacing:1.5px;
+<div style='text-align:center; color:#c8a46e; font-size:11px; letter-spacing:1.5px;
             text-transform:uppercase; border-top:1px solid #e8e2d8;
             padding-top:20px; margin-top:40px'>
-    Future Interns ML Internship &nbsp;·&nbsp; Store Sales Dataset, Kaggle &nbsp;·&nbsp; Linear Regression
+    Future Interns ML Internship &nbsp;&nbsp; Store Sales Dataset, Kaggle &nbsp;·&nbsp; Linear Regression
 </div>
 """, unsafe_allow_html=True)
